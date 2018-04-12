@@ -1,3 +1,4 @@
+import pprint
 
 data = {'Gebiet': {'1': {'1': {'_0123456789ABCDEF0123456700004010': 'Deutschland'},
                   '2': {'_0123456789ABCDEF0123456700004010': 'Deutschland'},
@@ -48,7 +49,22 @@ data = {'Gebiet': {'1': {'1': {'_0123456789ABCDEF0123456700004010': 'Deutschland
                        '_6': 'Oberliga'},
                  '8': {'_4': 'Regionalliga', '_6': 'Oberliga'}}}
 
-#Verband Kürzel definieren
+wam_url = {'145': {'0123456789ABCDEF0123456700004180': {'_http://www.fussball.de/spieltagsuebersicht/bfv-b-junioren-verbandsliga-baden-b-junioren-verbandsliga-b-junioren-saison1718-baden/-/staffel/020DR2R3U0000002VS54898DVTQF3A0H-G': 'bfv-B-Junioren ''Verbandsliga'}},
+            '146': {'0123456789ABCDEF0123456700004180': {'_http://www.fussball.de/spieltagsuebersicht/bfv-b-junioren-landesliga-mittelbaden-baden-b-junioren-landesliga-b-junioren-saison1718-baden/-/staffel/020EQ1DN3O00000DVS54898DVTQF3A0H-G': 'bfv-B-Junioren '
+                                                                                                                                                                                              'Landesliga '
+                                                                                                                                                                                              'Mittelbaden'},
+                                                        {'_http://www.fussball.de/spieltagsuebersicht/bfv-b-junioren-landesliga-odenwald-baden-b-junioren-landesliga-b-junioren-saison1718-baden/-/staffel/020EQ1DMFC00000CVS54898DVTQF3A0H-G': 'bfv-B-Junioren '
+                                                                                                                                                                                           'Landesliga '
+                                                                                                                                                                                           'Odenwald'},
+                                                        {'_http://www.fussball.de/spieltagsuebersicht/bfv-b-junioren-landesliga-rhein-neckar-baden-b-junioren-landesliga-b-junioren-saison1718-baden/-/staffel/020EQ1DMQ8000003VS54898DVTQF3A0H-G': 'bfv-B-Junioren ''Landesliga '}}}
+
+    w_key = wam_url["146"]["0123456789ABCDEF0123456700004180"]
+
+w_new = {v: k for k, v in w_key.items()}
+print(w_new)
+
+'''
+             #Verband Kürzel definieren
 bundeslaender = {"Deutschland": "_89", "Baden": "_32", "Bayern": "_31", "Berlin": "_66", "Brandenburg": "_61", "Bremen": "_02", "Wuerttemberg": "_35"}
 
 #Saison definieren
@@ -103,3 +119,5 @@ print(gebiet_id)
 
 
 #get_wettbewerbsurl(get_mannschaftsart(saison["Aktuell"],bundeslaender["Wuerttemberg"],"B-Junioren"))
+
+'''

@@ -95,13 +95,29 @@ for a, b in wam_arten["Spielklasse"][in_mak.strip("_")].items():
 print(spielklasse_id)
 
 # 6. Gebiet  --- Mannschaftsart [in_mak] u. Spielkasse [spielklasse_id] ID's werden benötigt
-print(wam_arten["Gebiet"][in_mak.strip("_")][spielklasse_id.strip("_")])
+swap_gebiet = {v: k for k, v in wam_arten["Gebiet"][in_mak.strip("_")][spielklasse_id.strip("_")].items()}
+print(swap_gebiet)
 in_gebiet = input("Gebiet ? ")
-gebiet_id = wam_arten["Gebiet"][in_mak.strip("_")][spielklasse_id.strip("_")][in_gebiet]
-print(gebiet_id)
+gebiet_id = swap_gebiet[in_gebiet]
+
+
+# 7. Wettbewerb
+swap_wettbewerb = {}
+for k, v in wam_wettbewerbsurls[spielklasse_id.strip("_")][gebiet_id.strip("_")].items():
+    swap_wettbewerb[v]=k
+
+print(swap_wettbewerb.keys())
+
+in_wettbewerb = input("Wettbewerb ? ")
+wettb_url = swap_wettbewerb[in_wettbewerb].strip("_")
+print(wettb_url)
+
+# URL aufrufen und Vereine extrahieren
 
 
 
-pprint.pprint(wam_wettbewerbsurls)
+
+# Vereinsseite aufrufen und Adresse extrahieren
+
 
 #get_wettbewerbsurl(get_mannschaftsart(saison["Aktuell"],bundeslaender["Wuerttemberg"],"B-Junioren"))

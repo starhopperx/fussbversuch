@@ -11,6 +11,7 @@ def get_latlon(adress):
 
     gmaps = googlemaps.Client(key='AIzaSyB3OicPc2Q0Vv9q6jGnEYkP44vVw8d_fjY')
 
+
     geocode_result = gmaps.geocode(adress)
 
     lat = geocode_result[0]["geometry"]["location"]["lat"]
