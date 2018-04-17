@@ -1,4 +1,24 @@
 import pprint
+import  build_map
+
+#adressen = ['\nRichard-Wagner-Str. 31, 75031 Eppingen\n', '\nFasanenstr. 25, 75180 Pforzheim\n','\nZum Stadion 1, 74821 Mosbach\n', '\nLorscher Str. 84, 68519 Viernheim\n','\nPleikartsförster Str. 130, 69124 Heidelberg\n', '\nErbprinzenstr. 52, 75175 Pforzheim\n','\nPostfach 2112, 69240 Mühlhausen\n', '\nPostfach 1429, 76293 Stutensee\n', '\nHertzstr. 23, 76187 Karlsruhe\n','\nSchwetzinger Str. 92, 69190 Walldorf\n', '\nJahnstr. 1, 69207 Sandhausen\n','\nPostfach 310446, 68264 Mannheim\n', '\nSchwetzinger Str. 92, 69190 Walldorf\n','\nJahnstr. 1, 69207 Sandhausen\n', '\nPleikartsförster Str. 130, 69124 Heidelberg\n','\nZum Stadion 1, 74821 Mosbach\n', '\nLorscher Str. 84, 68519 Viernheim\n', '\nPostfach 310446, 68264 Mannheim\n','\nPostfach 2112, 69240 Mühlhausen\n', '\nErbprinzenstr. 52, 75175 Pforzheim\n','\nRichard-Wagner-Str. 31, 75031 Eppingen\n', '\nPostfach 1429, 76293 Stutensee\n','\nHertzstr. 23, 76187 Karlsruhe\n', '\nFasanenstr. 25, 75180 Pforzheim\n']
+#bm = build_map.BuildMap(adressen, '73770, Denkendorf')
+#bm.main()
+test= [{'a': 'lala'}, {'b': 'lulu'}]
+for t in test:
+    for k, v in t.items():
+        print(k, v)
+'''
+-------------------------------------------
+s = 'Postfach 2112, 69240 Mühlhausen'
+
+if 'Postfach' in s:
+    s=s.split(',')
+    s= s[1].strip(' ')
+    print(s)
+
+----------------------------------------------
+
 
 data = {'Gebiet': {'1': {'1': {'_0123456789ABCDEF0123456700004010': 'Deutschland'},
                   '2': {'_0123456789ABCDEF0123456700004010': 'Deutschland'},
@@ -63,7 +83,7 @@ wam_url = {'145': {'0123456789ABCDEF0123456700004180': {'_http://www.fussball.de
 w_new = {v: k for k, v in w_key.items()}
 print(w_new)
 
-'''
+
              #Verband Kürzel definieren
 bundeslaender = {"Deutschland": "_89", "Baden": "_32", "Bayern": "_31", "Berlin": "_66", "Brandenburg": "_61", "Bremen": "_02", "Wuerttemberg": "_35"}
 
@@ -115,7 +135,6 @@ print(wam_arten["Gebiet"][in_mak.strip("_")][spielklasse_id.strip("_")])
 in_gebiet = input("Gebiet ? ")
 gebiet_id = wam_arten["Gebiet"][in_mak.strip("_".items)][spielklasse_id][in_gebiet]
 print(gebiet_id)
-
 
 
 #get_wettbewerbsurl(get_mannschaftsart(saison["Aktuell"],bundeslaender["Wuerttemberg"],"B-Junioren"))

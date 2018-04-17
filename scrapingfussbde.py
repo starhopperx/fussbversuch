@@ -4,10 +4,9 @@ from lxml import html
 import re
 import pprint
 
-#r = requests.get('http://www.fussball.de/spieltagsuebersicht/bfv-b-junioren-landesliga-rhein-neckar-baden-b-junioren-landesliga-b-junioren-saison1718-baden/-/staffel/020EQ1DMQ8000003VS54898DVTQF3A0H-G')
-#soup = BeautifulSoup(r.content, "html.parser")
 
-html = '''
+
+html1 = '''
 <!doctype html>
 <html class="no-js">
 	<head>
@@ -3179,7 +3178,7 @@ if (window.location.href.indexOf('#_=_') > 0) {
 </html>
 '''
 
-ahtml = '''<!doctype html>
+ahtml1 = '''<!doctype html>
 <html class="no-js">
 	<head>
 		<meta charset="utf-8">
@@ -7502,46 +7501,38 @@ if (window.location.href.indexOf('#_=_') > 0) {
 ver_urls = []
 
 #----------------------Vereins URL--------------------------------------------------------------------------------
+#Input Webbbewerbs URL mit der Tabelle . Funktion extrahiert Vereins URLs
 
-soup = BeautifulSoup(html,'lxml')
-for link in soup.find_all('a', {'class': "club-wrapper"}):
-    if link.get('href')!= None:
-        ver_urls.append(link.get('href'))
+def get_verurls(url):
+    r = requests.get(url)
+    html = r.text
+    soup = BeautifulSoup(html,'lxml')
+    for link in soup.find_all('a', {'class': "club-wrapper"}):
+        if link.get('href')!= None:
+            ver_urls.append(link.get('href'))
+
+    return ver_urls
 
 #-----------------------Vereinsseite Scrapen------------------------------------------------------------------------
+#Input Vereins URL Output Vereinsadresse und Nmen
 
+def get_veradressen(url):
+    #Vereinsname in Titel
+    r = requests.get(url)
+    html = r.text
+    asoup = BeautifulSoup(html, 'lxml')
+    title = asoup.find("title").get_text()
+    title= title.replace('\n', '')
+    #Adresse
+    aso = asoup.find(id="teamProfile")
+    a = aso.find_all('div', {'class': "column-left"})
 
-asoup = BeautifulSoup(ahtml, 'lxml')
-title = asoup.find("title").get_text()
-print(title)
-
-aso = asoup.find(id="teamProfile")
-a = aso.find_all('div', {'class': "column-left"})
-
-b=a[1].find('div',{'class': "value"})
-b=b.text
-b=b.replace('\t', '')
-print(b)
-
-#r = requests.get(ver_urls[0])
-#data = r.content
-
-#print(data.decode("utf8"))
-
-'''
-try:
-    from BeautifulSoup import BeautifulSoup
-except ImportError:
-
-
-parsed_html = BeautifulSoup(html)
-print parsed_html.body.find('div', attrs={'class':'container'}).text
-
-
-#clubname = tree.xpath('//div[@class="club-name"]/text()')
-
-#for c in clubname:
-   # print(c)
-
-#pprint.pprint(clubname)
-'''
+    b=a[1].find('div',{'class': "value"})
+    b=b.text
+    b=b.replace('\t', '')
+    #Postfach String entfernen
+    if 'Postfach' in b:
+        b = b.split(',')
+        b = b[1].strip(' ')
+    print(title,':',b)
+    return {b, title}

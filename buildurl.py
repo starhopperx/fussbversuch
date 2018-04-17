@@ -1,6 +1,8 @@
 import requests
 import json
 import pprint
+import scrapingfussbde
+import  build_map
 
 
 #Verband Kürzel definieren
@@ -112,12 +114,19 @@ in_wettbewerb = input("Wettbewerb ? ")
 wettb_url = swap_wettbewerb[in_wettbewerb].strip("_")
 print(wettb_url)
 
+
 # URL aufrufen und Vereine extrahieren
+verurls = scrapingfussbde.get_verurls(wettb_url)
 
 
 
 
 # Vereinsseite aufrufen und Adresse extrahieren
+adressen=[]
+for a in verurls:
+    adressen.append(scrapingfussbde.get_veradressen(a))
+
+bm = build_map.BuildMap(adressen, 'Wiesensteig')
+bm.main()
 
 
-#get_wettbewerbsurl(get_mannschaftsart(saison["Aktuell"],bundeslaender["Wuerttemberg"],"B-Junioren"))
