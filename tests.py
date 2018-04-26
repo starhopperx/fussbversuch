@@ -1,13 +1,18 @@
 import pprint
-import  build_map
+import build_map
 
-#adressen = ['\nRichard-Wagner-Str. 31, 75031 Eppingen\n', '\nFasanenstr. 25, 75180 Pforzheim\n','\nZum Stadion 1, 74821 Mosbach\n', '\nLorscher Str. 84, 68519 Viernheim\n','\nPleikartsförster Str. 130, 69124 Heidelberg\n', '\nErbprinzenstr. 52, 75175 Pforzheim\n','\nPostfach 2112, 69240 Mühlhausen\n', '\nPostfach 1429, 76293 Stutensee\n', '\nHertzstr. 23, 76187 Karlsruhe\n','\nSchwetzinger Str. 92, 69190 Walldorf\n', '\nJahnstr. 1, 69207 Sandhausen\n','\nPostfach 310446, 68264 Mannheim\n', '\nSchwetzinger Str. 92, 69190 Walldorf\n','\nJahnstr. 1, 69207 Sandhausen\n', '\nPleikartsförster Str. 130, 69124 Heidelberg\n','\nZum Stadion 1, 74821 Mosbach\n', '\nLorscher Str. 84, 68519 Viernheim\n', '\nPostfach 310446, 68264 Mannheim\n','\nPostfach 2112, 69240 Mühlhausen\n', '\nErbprinzenstr. 52, 75175 Pforzheim\n','\nRichard-Wagner-Str. 31, 75031 Eppingen\n', '\nPostfach 1429, 76293 Stutensee\n','\nHertzstr. 23, 76187 Karlsruhe\n', '\nFasanenstr. 25, 75180 Pforzheim\n']
-#bm = build_map.BuildMap(adressen, '73770, Denkendorf')
-#bm.main()
-test= [{'a': 'lala'}, {'b': 'lulu'}]
-for t in test:
-    for k, v in t.items():
-        print(k, v)
+# adressen = ['\nRichard-Wagner-Str. 31, 75031 Eppingen\n', '\nFasanenstr. 25, 75180 Pforzheim\n','\nZum Stadion 1, 74821 Mosbach\n', '\nLorscher Str. 84, 68519 Viernheim\n','\nPleikartsförster Str. 130, 69124 Heidelberg\n', '\nErbprinzenstr. 52, 75175 Pforzheim\n','\nPostfach 2112, 69240 Mühlhausen\n', '\nPostfach 1429, 76293 Stutensee\n', '\nHertzstr. 23, 76187 Karlsruhe\n','\nSchwetzinger Str. 92, 69190 Walldorf\n', '\nJahnstr. 1, 69207 Sandhausen\n','\nPostfach 310446, 68264 Mannheim\n', '\nSchwetzinger Str. 92, 69190 Walldorf\n','\nJahnstr. 1, 69207 Sandhausen\n', '\nPleikartsförster Str. 130, 69124 Heidelberg\n','\nZum Stadion 1, 74821 Mosbach\n', '\nLorscher Str. 84, 68519 Viernheim\n', '\nPostfach 310446, 68264 Mannheim\n','\nPostfach 2112, 69240 Mühlhausen\n', '\nErbprinzenstr. 52, 75175 Pforzheim\n','\nRichard-Wagner-Str. 31, 75031 Eppingen\n', '\nPostfach 1429, 76293 Stutensee\n','\nHertzstr. 23, 76187 Karlsruhe\n', '\nFasanenstr. 25, 75180 Pforzheim\n']
+# bm = build_map.BuildMap(adressen, '73770, Denkendorf')
+# bm.main()
+test = {'CFC Hertha (B-Junioren)': 'Nordhauser Str. 23, 10589 Berlin',
+    'SV Empor Berlin (B-Junioren)': 'Cantianstr. 24, 10437 Berlin',
+    '1.FC Wilmersdorf (B-Junioren)': 'Blissestr. 20 B, 10713 Berlin',
+    'FC Internationale (B-Junioren)': 'Priesterweg 2, 10829 Berlin',
+    'TSV Rudow (B-Junioren)': 'Neuköllner Str. 277, 12357 Berlin'}
+
+for key,val in test.items():
+    print(key, 'is the key for ', val)
+
 '''
 -------------------------------------------
 s = 'Postfach 2112, 69240 Mühlhausen'

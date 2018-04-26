@@ -1,3 +1,5 @@
+import time
+
 import gmplot
 import googlemaps
 
@@ -6,27 +8,26 @@ class BuildMap:
 
     api_key = 'AIzaSyB3OicPc2Q0Vv9q6jGnEYkP44vVw8d_fjY'
 
-    def __init__(self, adressen,home):
+    def __init__(self, ver_adressen, home):
         # Adressen Liste
-        self.adressen = adressen
+        self.adressen = ver_adressen
         self.home = home
 
     def main(self):
-        gmap = gmplot.GoogleMapPlotter.from_geocode(self.home,zoom=5)
         lat, lon = self.get_latlon(self.home)
+        gmap = gmplot.GoogleMapPlotter(lat, lon, 10)
         gmap.coloricon = "http://www.googlemapsmarkers.com/v1/%s/"
         gmap.marker(lat, lon, 'tomato', title="Zuhause")
-
-        for a in self.adressen:
-            for k, v in a.items():
-                lat, lon = self.get_latlon(v)
-                gmap.marker(lat, lon, 'cornflowerblue',title=k)
+        for k, v in self.adressen.items():
+            print(v,'----',k)
+            lat, lon = self.get_latlon(v)
+            gmap.marker(lat, lon, 'cornflowerblue', title=k)
 
         gmap.draw("map.html")
 
 
     """Längen und Breitengrade abrufen"""
-    def get_latlon(self,adress):
+    def get_latlon(self, adress):
 
         gmaps = googlemaps.Client(self.api_key)
         geocode_result = gmaps.geocode(adress)

@@ -1,8 +1,6 @@
 import requests
-import json
-import pprint
 import scrapingfussbde
-import  build_map
+import build_map
 
 
 #Verband Kürzel definieren
@@ -14,13 +12,13 @@ saison = {"Aktuell": "_1718"}
 
 
 def walk_dict(d):
-    for k,v in d.items():
+    for b, v in d.items():
         if isinstance(v, dict):
             walk_dict(v)
         else:
-            print(k,"---", v)
+            print(b, "---", v)
 
-#Die erste AjaxUrl Input Saison und Bundesland-> Antwort Mannschaftsart,Spielklasse,Gebiet
+# Die erste AjaxUrl Input Saison und Bundesland-> Antwort Mannschaftsart,Spielklasse,Gebiet
 # Return URL mit Mannschaftsart
 def get_mannschaftsart(saison, bundesland):
 
@@ -32,10 +30,7 @@ def get_mannschaftsart(saison, bundesland):
     ajaxurl = "http://www.fussball.de/wam_arten" + b + s + "_1.json"
 
     response = requests.get(ajaxurl)
-    #response = requests.get("http://www.fussball.de/wam_wettbewerbsurls_89_1718_1_1.json")
-    #response = requests.get("http://www.fussball.de/ajax.actual.table/-/staffel/020AG56UI8000000VS54898DVUVCCN5J-G")
     data = response.json()
-
     return data
 
 
@@ -48,13 +43,8 @@ def get_wettbewerbsurl(bundesland, saison, mannschaftsart):
 
     response = requests.get("http://www.fussball.de/wam_wettbewerbsurls"+ b + s + "_1"+ m + ".json")
     data = response.json()
-
-    #print("----------------------------------")
-    #print("http://www.fussball.de/wam_wettbewerbsurls"+ b + s + "_1"+ m + ".json)
-    #pprint(data)
-    #print("---------------------------------")
-
     return data
+
 
 #-------------------------------------Auswahl wie in Fussball.de---------------------------------------
 # 1. Verband
@@ -122,11 +112,12 @@ verurls = scrapingfussbde.get_verurls(wettb_url)
 
 
 # Vereinsseite aufrufen und Adresse extrahieren
-adressen=[]
+adressen_dic = {}
 for a in verurls:
-    adressen.append(scrapingfussbde.get_veradressen(a))
-
-bm = build_map.BuildMap(adressen, 'Wiesensteig')
+    ver, adr =scrapingfussbde.get_veradressen(a)
+    adressen_dic[ver] = adr
+print(adressen_dic)
+bm = build_map.BuildMap(adressen_dic, 'Wiesensteig')
 bm.main()
 
 
